@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../../resources/js-test.js"></script>
+<script src="resources/spatial-navigation-utils.js"></script>
+<script type="application/javascript">
+jsTestIsAsync = true;
+
+var resultMap = [
+    ["Right", "e9"],
+    ["Up", "e9"],
+    ["Right", "e5"],
+    ["Up", "e2"],
+    ["Left", "e4"],
+    ["Left", "e6"],
+    ["Down", "e8"],
+    ["Down", "e5"],
+    ["DONE", "DONE"]
+];
+
+if (window.testRunner) {
+    testRunner.overridePreference("WebKitTabToLinksPreferenceKey", 1);
+    window.internals.settings.setSpatialNavigationEnabled(true);
+}
+
+function runTest()
+{
+    // starting the test itself: get to a known place.
+    document.getElementById("e5").focus();
+
+    initTest(resultMap, finishJSTest);
+}
+</script>
+</head>
+<style>
+#e2 {
+  nav-left: #e4;
+}
+#e4 {
+  nav-left: #e6;
+}
+#e5 {
+  nav-right: #e9;
+  nav-up: #e2;
+}
+#e6 {
+  nav-down: #e8;
+}
+#e8 {
+  nav-down: #e5;
+}
+#e9 {
+  nav-up: #e9;
+  nav-right: #e5;
+}
+</style>
+<body id="some-content" onload="runTest();">
+<p id="description">
+This test ensures the correctness of Spatial Navigation when CSS3 nav-up/down/left/right properties are set.
+</p>
+<table style="text-align: left; width: 100%; margin-left: auto; margin-right: auto;" border="1" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td style="vertical-align: top; text-align: center;"><a id="e1" href="a">1</a></td>
+<td style="vertical-align: top; text-align: center;"><a id="e2" href="a">2</a></td>
+<td style="vertical-align: top; text-align: center;"><a id="e3" href="a">3</a></td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: center;"><a id="e4" href="a">4</a></td>
+<td style="vertical-align: top; text-align: center;"><a id="e5" href="5">5</td>
+<td style="vertical-align: top; text-align: center;"><a id="e6" href="a">6</a></td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: center;"><a id="e7" href="a">7</a></td>
+<td style="vertical-align: top; text-align: center;"><a id="e8" href="a">8</a></td>
+<td style="vertical-align: top; text-align: center;"><a id="e9" href="a">9</a></td>
+</tr>
+</tbody>
+</table>
+<div id="console"></div>
+</body>
+</html>

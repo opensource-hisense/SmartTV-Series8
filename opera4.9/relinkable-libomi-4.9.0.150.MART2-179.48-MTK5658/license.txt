@@ -1,0 +1,12 @@
+Unless otherwise specified, the contents of the static libraries (*.a) in
+this directory are subject to the respective licenses as mentioned in the the
+Chromium source tree as of commit e81dfa4d23eeb9d3e32a086cca91f1c68c4f2183) (Chrome version 53.0.2785.143).
+
+Files present in this package that are not contained in Chromium source
+are Copyright Opera TV AS 2017.  The following copyright notice applies:
+
+"Copyright (C) 2017 Opera TV AS.  All rights reserved.
+
+This file is part of the Opera Devices SDK.
+It includes Opera TV proprietary information, and is made available solely to
+enable you to exercise your rights under the applicable open source licenses.
