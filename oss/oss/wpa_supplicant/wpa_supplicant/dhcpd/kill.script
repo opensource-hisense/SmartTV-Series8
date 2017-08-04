@@ -1,0 +1,6 @@
+#!/bin/sh
+netif=$1
+
+ifconfig $netif 0.0.0.0
+ps | grep 'dhcpd' | xargs -r kill >/dev/null 2>&1 
+
