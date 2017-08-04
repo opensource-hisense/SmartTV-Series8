@@ -1,0 +1,11 @@
+NAME=libiconv
+VERSION=1.11.1
+URL=http://www.gnu.org/software/libiconv
+LICENSE=libiconv.txt (GPLv2)
+OWNER=Jian.Dong
+SOURCE=oss/source/libiconv
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=GNU libiconv is a convertsion library. To convert betweeen a given text encoding and the users encoding, or to convert between internal string representation (Unicode) and external string representation (a traditional encoding).
+INSTALL_PATH=basic
+

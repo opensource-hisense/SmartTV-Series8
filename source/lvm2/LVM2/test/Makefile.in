@@ -1,0 +1,112 @@
+# Copyright (C) 2007-2010 Red Hat, Inc. All rights reserved.
+#
+# This file is part of LVM2.
+#
+# This copyrighted material is made available to anyone wishing to use,
+# modify, copy, or redistribute it subject to the terms and conditions
+# of the GNU General Public License v.2.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+#TEST_OPTS=--verbose --debug
+SHELL_PATH ?= $(SHELL)
+TAR ?= $(TAR)
+RM ?= rm -f
+
+subdir := $(shell pwd|sed 's,.*/,,')
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+top_builddir = @top_builddir@
+abs_srcdir = @abs_srcdir@
+abs_builddir = @abs_builddir@
+abs_top_builddir = @abs_top_builddir@
+abs_top_srcdir = @abs_top_srcdir@
+include $(top_builddir)/make.tmpl
+
+T ?= .
+S ?= @ # never match anything by default
+VERBOSE ?= 0
+ALL = $(shell find $(srcdir) \( -name t-\*.sh -or -path */api/\*.sh \) | sort)
+RUN = $(shell find $(srcdir) -regextype posix-egrep \( -name t-\*.sh -or -path */api/\*.sh \) -and -regex "$(srcdir)/.*($(T)).*" -and -not -regex "$(srcdir)/.*($(S)).*" | sort)
+RUN_BASE = $(shell echo $(RUN) | xargs -n 1 echo | sed -e s,^$(srcdir)/,,)
+
+# Shell quote;
+SHELL_PATH_SQ = $(subst ','\'',$(SHELL_PATH))
+
+ifeq ("@UDEV_SYNC@", "yes")
+dm_udev_synchronisation = 1
+endif
+
+all check: .tests-stamp
+	make -C api tests
+	@echo Testing with locking_type 1
+	VERBOSE=$(VERBOSE) ./lib/harness $(RUN_BASE)
+	@echo Testing with locking_type 3
+	VERBOSE=$(VERBOSE) LVM_TEST_LOCKING=3 ./lib/harness $(RUN_BASE)
+
+check_cluster: .tests-stamp
+	make -C api tests
+	@echo Testing with locking_type 3
+	VERBOSE=$(VERBOSE) LVM_TEST_LOCKING=3 ./lib/harness $(RUN_BASE)
+
+check_local: .tests-stamp
+	make -C api tests
+	@echo Testing with locking_type 1
+	VERBOSE=$(VERBOSE) LVM_TEST_LOCKING=1 ./lib/harness $(RUN_BASE)
+
+lib/should: lib/not
+	ln -sf not lib/should
+
+lib/%: $(srcdir)/lib/%.c .lib-dir-stamp
+	$(CC) $(DEFS) $(CFLAGS) -o $@ $<
+
+lib/%: $(srcdir)/lib/%.sh .lib-dir-stamp
+	cp $< $@
+	chmod +x $@
+
+lib/paths: $(srcdir)/Makefile.in .lib-dir-stamp
+	rm -f $@-t
+	echo 'top_srcdir=$(top_srcdir)' >> $@-t
+	echo 'abs_top_builddir=$(abs_top_builddir)' >> $@-t
+	echo 'abs_top_srcdir=$(abs_top_builddir)' >> $@-t
+	echo 'abs_srcdir=$(abs_srcdir)' >> $@-t
+	echo 'abs_builddir=$(abs_builddir)' >> $@-t
+	echo 'export DM_UDEV_SYNCHRONISATION=$(dm_udev_synchronisation)' >> $@-t
+	mv $@-t $@
+
+LIB = lib/not lib/should lib/harness \
+      lib/check lib/aux lib/test lib/utils lib/get lib/lvm-wrapper \
+      lib/paths
+
+.tests-stamp: $(ALL) $(LIB)
+	@if test "$(srcdir)" != . ; then \
+	    echo "Copying tests to builddir."; \
+	    for f in $(ALL); do cp $$f `echo $$f | sed -e s,^$(srcdir)/,,`; done; \
+	fi
+	touch .tests-stamp
+
+Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
+	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
+
+.lib-dir-stamp:
+	mkdir -p lib
+	for i in lvm $$(cat ../tools/.commands); do \
+	  ln -fs lvm-wrapper lib/$$i; \
+	done
+	ln -s "$(abs_top_builddir)/tools/dmsetup" lib/dmsetup
+	ln -s "$(abs_top_builddir)/daemons/clvmd/clvmd" lib/clvmd
+	ln -s "$(abs_top_builddir)/daemons/dmeventd/dmeventd" lib/dmeventd
+	ln -s "$(abs_top_builddir)/scripts/vgimportclone.sh" lib/vgimportclone
+	touch $@
+
+clean:
+	for i in lvm $$(cat ../tools/.commands); do rm -f lib/$$i; done
+	if test "$(srcdir)" != . ; then rm -f $(subst $(srcdir)/, ,$(RUN)) lvm2app.sh ; fi
+
+CLEAN_TARGETS += .lib-dir-stamp .test-stamp $(LIB) \
+	lib/dmsetup lib/clvmd lib/dmeventd lib/vgimportclone
+
+.NOTPARALLEL:

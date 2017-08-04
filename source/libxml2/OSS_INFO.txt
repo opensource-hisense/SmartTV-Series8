@@ -1,0 +1,10 @@
+NAME=libxml2
+VERSION=2.7.8
+URL=http://www.xmlsoft.org/
+LICENSE=libxml2.txt (MIT License)
+OWNER=han.wu
+SOURCE=oss/source/libxml2
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=Libxml2 is the XML C parser and toolkit developed for the Gnome project.
+INSTALL_PATH=3rd

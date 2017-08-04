@@ -1,0 +1,10 @@
+NAME=openssl
+VERSION=1.0.1j
+URL=http://www.openssl.org/
+LICENSE=Apache License 1.0 / BSD License
+OWNER=Jiang Jiang
+SOURCE=oss/source/openssl
+MTK_MODIFY=
+USAGE=Dynamic Link
+INSTALL_PATH=basic
+COMMENT=

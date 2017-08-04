@@ -1,0 +1,6 @@
+==== wget
+== neon
+time CFLAGS="-march=armv7-a -mtune=cortex-a9 -mfloat-abi=softfp -mfpu=neon-vfpv4" CC=/mtkoss/gnuarm/neon_4.8.2_2.6.35_cortex-a9-ubuntu/x86_64/bin/armv7a-mediatek482_001_neon-linux-gnueabi-gcc LD=/mtkoss/gnuarm/neon_4.8.2_2.6.35_cortex-a9-ubuntu/x86_64/bin/armv7a-mediatek482_001_neon-linux-gnueabi-ld AR=/mtkoss/gnuarm/neon_4.8.2_2.6.35_cortex-a9-ubuntu/x86_64/bin/armv7a-mediatek482_001_neon-linux-gnueabi-ar ./configure --host=i686-pc-linux-gnu --target=arm-linux --prefix=/proj/mtk40123/p4ws/dtv_1401/DTV/PROD_BR/DTV_X_IDTV1401/l-pdk/device/mediatek_common/vm_linux/oss/library/gnuarm-4.8.2_neon_ca9/wget/1.10.2
+== vfp_ca9
+time CFLAGS="-march=armv7-a -mtune=cortex-a9 -mfloat-abi=softfp" CC=/mtkoss/gnuarm/vfp_4.8.2_2.6.35_cortex-a9-ubuntu/x86_64/bin/armv7a-mediatek482_001_vfp-linux-gnueabi-gcc LD=/mtkoss/gnuarm/vfp_4.8.2_2.6.35_cortex-a9-ubuntu/x86_64/bin/armv7a-mediatek482_001_vfp-linux-gnueabi-ld AR=/mtkoss/gnuarm/vfp_4.8.2_2.6.35_cortex-a9-ubuntu/x86_64/bin/armv7a-mediatek482_001_vfp-linux-gnueabi-ar ./configure --host=i686-pc-linux-gnu --target=arm-linux --prefix=/proj/mtk40123/p4ws/dtv_1401/DTV/PROD_BR/DTV_X_IDTV1401/l-pdk/device/mediatek_common/vm_linux/oss/library/gnuarm-4.8.2_vfp_ca9/wget/1.10.2
+

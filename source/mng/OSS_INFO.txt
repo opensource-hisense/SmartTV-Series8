@@ -1,0 +1,10 @@
+NAME=libmng
+VERSION=1.0.10
+URL=http://sourceforge.net/projects/libmng/files/
+LICENSE=BSD
+OWNER=Xiuqin Wang
+SOURCE=oss/source/mng
+MTK_MODIFY=
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=libmng -THE reference library for reading, displaying, writing and examining Multiple-Image Network Graphics.MNG is the animation extension to the popular PNG image-format.

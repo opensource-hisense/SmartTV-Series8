@@ -1,0 +1,11 @@
+NAME=lvm2
+VERSION=2.02.89
+URL=ftp://sources.redhat.com/pub/lvm2/releases/
+LICENSE=GPLv2/LGPLv2.1
+OWNER=jacky.ko
+SOURCE=oss/source/lvm2
+MTK_MODIFY=No
+USAGE=Tool
+COMMENT=Userspace toolset that provide logical volume management facilities on linux
+RELEASE_SOURCE=Yes
+INSTALL_PATH=lib

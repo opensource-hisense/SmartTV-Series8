@@ -1,0 +1,12 @@
+NAME=uriparser
+VERSION=0.7.7
+URL=http://uriparser.sourceforge.net/
+LICENSE=New BSD license
+OWNER=gaoxiang.xiong
+SOURCE=oss/source/uriparser
+MTK_MODIFY=YES
+USAGE=Dynamic Link
+COMMENT=c runtime library
+RELEASE_SOURCE=Yes
+INSTALL_PATH=3rd
+

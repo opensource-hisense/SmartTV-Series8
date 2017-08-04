@@ -1,0 +1,10 @@
+NAME=libnl-3.2.25
+VERSION=v3.2.25
+URL=http://www.infradead.org/~tgr/libnl/
+LICENSE=GPLv2
+OWNER=Quan Zhou
+SOURCE=oss/source/libnl
+MTK_MODIFY=
+USAGE=dynamic lib
+INSTALL_PATH=basic
+COMMENT=Netlink protocol Library suite

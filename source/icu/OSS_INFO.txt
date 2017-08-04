@@ -1,0 +1,12 @@
+NAME=icu
+VERSION=51.1
+URL=http://site.icu-project.org
+LICENSE=icu.txt
+OWNER=jiangtao.xu
+SOURCE=oss/source/icu
+MTK_MODIFY=Yes
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=ICU is a mature, widely used set of C/C++ and Java libraries providing 
+Unicode and Globalization support for software applications.
+

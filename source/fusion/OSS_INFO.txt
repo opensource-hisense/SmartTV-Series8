@@ -1,0 +1,9 @@
+NAME=linux-fusion
+VERSION=8.7.0
+LICENSE=GNU
+OWNER=deliang.peng
+SOURCE=vm_linux/chiling/driver/directfb/Kernel/linux-fusion
+MTK_MODIFY=yes
+USAGE=Static link
+INSTALL_PATH=basic
+COMMENT= directfb multi-process communication

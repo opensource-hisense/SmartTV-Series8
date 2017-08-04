@@ -1,0 +1,10 @@
+NAME=SaWMan
+VERSION=1.5.3
+URL=http://www.directfb.org
+LICENSE=GNU
+OWNER=deliang.peng
+SOURCE=vm_linux/chiling/driver/directfb/Source/SaWMan
+MTK_MODIFY=yes
+USAGE=Static link
+INSTALL_PATH=lib
+COMMENT= directfb window manager

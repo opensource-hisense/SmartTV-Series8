@@ -1,0 +1,7 @@
+*.o
+wpa_supplicant/bin/wpa_cli
+wpa_supplicant/bin/wpa_passphrase
+wpa_supplicant/bin/wpa_supplicant
+hostapd/bin/hostapd
+hostapd/bin/hostapd_cli
+

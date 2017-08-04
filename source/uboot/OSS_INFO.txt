@@ -1,0 +1,9 @@
+NAME=u-boot-2011.12
+VERSION=2011.12
+LICENSE=GPLv2
+INSTALL_PATH=basic
+OWNER=tao.tian
+SOURCE=vm_linux/chiling/uboot/u-boot-2011.12
+MTK_MODIFY=yes
+USAGE=Static link
+COMMENT= the uboot will load the linux kerenl to dram,and jump to run .

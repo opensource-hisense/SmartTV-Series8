@@ -1,0 +1,10 @@
+NAME=wget
+VERSION=1.10.2
+URL=http://ftp.gnu.org/gnu/wget/wget-1.10.2.tar.gz
+LICENSE=GPLv2
+OWNER=Jian.Dong
+SOURCE=oss/source/wget
+MTK_MODIFY=NO
+USAGE=Program
+INSTALL_PATH=/3rd/bin
+COMMENT=check nework for http/https

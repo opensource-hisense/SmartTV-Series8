@@ -1,0 +1,10 @@
+NAME=gawk
+VERSION=3.1.5
+URL=http://www.gnu.org/software/gawk/
+LICENSE=GPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/gawk
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=command like awk

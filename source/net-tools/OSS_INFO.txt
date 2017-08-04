@@ -1,0 +1,10 @@
+NAME=net-tools
+VERSION=1.60
+URL=http://www.linuxfromscratch.org/blfs/view/6.3/basicnet/net-tools.html
+LICENSE=GPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/net-tools
+MTK_MODIFY=Yes
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=a program contains network command

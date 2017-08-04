@@ -1,0 +1,10 @@
+NAME=zlib
+VERSION=1.2.3
+URL=http://www.zlib.net/
+LICENSE=zlib.txt
+OWNER=jiangtao.xu
+SOURCE=oss/source/zlib
+MTK_MODIFY=No
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=The 'zlib' compression library provides in-memory compression and decompression functions, including integrity checks of the uncompressed data.

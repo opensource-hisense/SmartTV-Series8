@@ -1,0 +1,10 @@
+NAME=fuse
+VERSION=2.8.4
+URL=http://sourceforge.net/projects/fuse
+LICENSE=GPLv2/LGPLv2
+OWNER=Guangjie Song
+SOURCE=oss/source/fuse
+MTK_MODIFY=
+USAGE=ko & so
+COMMENT=Fuse is a simple interface for userspace programs to export a virtual filesystem to the linux kernel
+INSTALL_PATH=basic

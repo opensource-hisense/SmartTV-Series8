@@ -1,0 +1,10 @@
+NAME=bash
+VERSION=3.2.48
+URL=http://www.gnu.org/software/bash/
+LICENSE=GPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/bash
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT= the shell, or command language interpreter

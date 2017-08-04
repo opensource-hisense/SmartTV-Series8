@@ -1,0 +1,10 @@
+NAME=coreutils
+VERSION=6.9
+URL=http://www.gnu.org/software/coreutils/
+LICENSE=GPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/coreutils
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=command like cp dd cat chroot

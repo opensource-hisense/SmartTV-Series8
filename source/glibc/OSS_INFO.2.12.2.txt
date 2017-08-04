@@ -1,0 +1,11 @@
+NAME=glibc
+VERSION=2.12.2
+URL=http://www.gnu.org/software/libc
+LICENSE=LGPLv2.1
+OWNER=hong.wang
+SOURCE=oss/source/glibc
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=c runtime library
+RELEASE_SOURCE=Yes
+INSTALL_PATH=lib

@@ -1,0 +1,10 @@
+NAME=tar
+VERSION=1.17
+URL=http://www.gnu.org/software/tar/
+LICENSE=GPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/tar
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=Decompression command

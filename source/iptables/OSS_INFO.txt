@@ -1,0 +1,11 @@
+NAME=iptables
+VERSION=1.4.15
+URL=http://www.netfilter.org/projects/iptables/
+LICENSE=GPLv2
+OWNER=qingjiang xu
+SOURCE=oss/source/iptables
+MTK_MODIFY=No
+USAGE=Program
+RELEASE_SOURCE=Yes
+COMMENT= set NAT rule command
+INSTALL_PATH=3rd

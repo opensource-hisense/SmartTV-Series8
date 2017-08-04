@@ -1,0 +1,39 @@
+.TH "LVMCONF" "8" "LVM TOOLS #VERSION#" "Red Hat, Inc" "\""
+
+.SH "NAME"
+.B lvmconf
+\- LVM configuration modifier
+
+.SH "SYNOPSIS"
+.B lvmconf
+[\-\-disable-cluster]
+[\-\-enable-cluster]
+[\-\-file <configfile>]
+[\-\-lockinglib <lib>]
+[\-\-lockinglibdir <dir>]
+
+.SH "DESCRIPTION"
+.B lvmconf
+is a script that modifies the locking configuration in an lvm configuration file. See \fBlvm.conf\fP(5).
+
+.SH "OPTIONS"
+.TP
+.BR \-\-disable-cluster
+Set \fBlocking_type\fR to the default non-clustered type.
+.TP
+.BR \-\-enable-cluster
+Set \fBlocking_type\fR to the default clustered type on this system.
+.TP
+.BR \-\-file " " \fI<configfile>\fR
+Apply the changes to \fBconfigfile\fR instead of the default \fB#DEFAULT_SYS_DIR#/lvm.conf\fR.
+.TP
+.BR \-\-lockinglib " " \fI<lib>\fR
+Set external \fBlocking_library\fR locking library to load if an external locking type is used.
+.TP
+.BR \-\-lockinglibdir " " \fI<dir>\fR
+.SH FILES
+.I #DEFAULT_SYS_DIR#/lvm.conf
+
+.SH "SEE ALSO"
+.BR lvm (8),
+.BR lvm.conf (5)

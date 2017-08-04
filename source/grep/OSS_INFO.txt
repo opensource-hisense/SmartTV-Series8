@@ -1,0 +1,10 @@
+NAME=grep
+VERSION=2.5.1a
+URL=http://www.gnu.org/software/grep/
+LICENSE=GPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/grep
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=search command

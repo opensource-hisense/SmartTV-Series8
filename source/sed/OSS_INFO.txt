@@ -1,0 +1,10 @@
+NAME=sed
+VERSION=4.1.5
+URL=http://www.gnu.org/software/sed/
+LICENSE=GPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/sed
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=line edit command

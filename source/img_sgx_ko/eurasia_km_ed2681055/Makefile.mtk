@@ -1,0 +1,58 @@
+export ARCH=arm
+export BUILD=release
+export PLATFORM_VERSION ?= 4.4
+ifeq "${IC_SETTING}" "mt5398"
+export SGXCORE=544 
+export SGXCOREREV=115
+else
+export SGXCORE=543
+export SGXCOREREV=303
+export SGX_FEATURE_MP ?= 1
+export SGX_FEATURE_MP_CORE_COUNT ?= 2
+endif
+export KERNELDIR=$(KERNEL_OBJ_ROOT)/$(KERNEL_VER)/$(KERNEL_CONFIG)
+export CROSS_COMPILE ?= /mtkoss/gnuarm/vfp_4.5.1_2.6.27_cortex-a9-rhel4/i686/bin/armv7a-mediatek451_001_vfp-linux-gnueabi-
+export KERNEL_CROSS_COMPILE ?= /mtkoss/gnuarm/vfp_4.5.1_2.6.27_cortex-a9-rhel4/i686/bin/armv7a-mediatek451_001_vfp-linux-gnueabi-
+export TARGET_DEVICE=$(IC_SETTING)
+
+
+#export ANDROID_ROOT=$(LINUX_ROOT)/android/jb-4.x
+export ANDROID_ROOT=$(LINUX_ROOT)/android/$(ANDROID_VERSION)
+
+export JOBS ?= 10
+
+
+CP      ?= cp
+CP_FLAG ?= -a
+
+ifeq "$(ANDROID_VERSION)" "l-pdk"
+DEVICE_STRING = device/$(CUSTOMER)/$(MODEL_NAME)
+SGX_KO_ROOT = $(ANDROID_TOP)/$(DEVICE_STRING)/DTV_OUT
+else
+DEVICE_STRING = device/$(BRAND)/$(ODM)/$(IC_SETTING)
+SGX_KO_ROOT = $(LINUX_ROOT)/android/$(ANDROID_VERSION)/$(DEVICE_STRING)/DTV_OUT
+endif
+
+OUTPUT      = $(OBJ_ROOT)/oss/source/img_sgx_ko/$(IMG_SGX_VER)/eurasiacon/binary2_$(BUILD)/target
+SGX_OBJ_ROOT      = $(OUTPUT)/kbuild
+
+
+ifeq "${IC_SETTING}" "mt5398"
+SGXKOBUILD = eurasiacon/build/linux2/mt53_android_5398
+else
+SGXKOBUILD = eurasiacon/build/linux2/mt53_android_5399
+endif
+
+
+all:
+	$(MAKE) -j $(JOBS) -C $(SGXKOBUILD)
+	$(CP) $(CP_FLAG) $(SGX_OBJ_ROOT)/pvrsrvkm.ko   $(SGX_KO_ROOT)
+	$(CP) $(CP_FLAG) $(SGX_OBJ_ROOT)/dc_cobra.ko $(SGX_KO_ROOT)
+
+clean:
+	$(RM) $(RM_FLAG) -r $(OBJ_ROOT)/oss/source/img_sgx_ko
+	$(RM) $(RM_FLAG) -r eurasiacon/binary2_$(BUILD)
+	$(RM) $(RM_FLAG) $(SGX_KO_ROOT)/pvrsrvkm.ko
+	$(RM) $(RM_FLAG) $(SGX_KO_ROOT)/dc_cobra.ko
+	
+

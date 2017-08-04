@@ -1,0 +1,77 @@
+diff -Naur iputils-s20101006/arping.c iputils-s20101006_new/arping.c
+--- iputils-s20101006/arping.c	2010-10-06 19:59:20.000000000 +0800
++++ iputils-s20101006_new/arping.c	2011-05-10 16:17:39.615647000 +0800
+@@ -32,7 +32,7 @@
+ #include <netinet/in.h>
+ #include <arpa/inet.h>
+ 
+-#include <sysfs/libsysfs.h>
++/*#include <sysfs/libsysfs.h>*/
+ 
+ #include "SNAPSHOT.h"
+ 
+@@ -313,6 +313,7 @@
+ 
+ void set_device_broadcast(char *device, unsigned char *ba, size_t balen)
+ {
++	#if 0
+ 	struct sysfs_class_device *dev;
+ 	struct sysfs_attribute *brdcast;
+ 	unsigned char *p;
+@@ -337,7 +338,7 @@
+ 
+ 	for (p = ba, ch = 0; p < ba + balen; p++, ch += 3)
+ 		*p = strtoul(brdcast->value + ch, NULL, 16);
+-
++	#endif
+ 	return;
+ }
+ 
+@@ -527,7 +528,7 @@
+ 
+ 	he = me;
+ 
+-#if 1
++#if 0
+ 	set_device_broadcast(device, ((struct sockaddr_ll *)&he)->sll_addr,
+ 			     ((struct sockaddr_ll *)&he)->sll_halen);
+ #else
+diff -Naur iputils-s20101006/Makefile iputils-s20101006_new/Makefile
+--- iputils-s20101006/Makefile	2010-10-06 19:59:20.000000000 +0800
++++ iputils-s20101006_new/Makefile	2011-05-10 16:06:56.304810000 +0800
+@@ -4,17 +4,20 @@
+ DEFINES= 
+ 
+ #options if you have a bind>=4.9.4 libresolv (or, maybe, glibc)
+-LDLIBS=
++LDLIBS=/mtkoss/gnuarm/vfp_4.5.1_2.6.27_arm11-rhel4/i686/sysroot/usr/lib/libresolv.so ../../../library/openssl/openssl-0.9.8r/usr/lib/libcrypto.so
+ ADDLIB=
+ 
+ #options if you compile with libc5, and without a bind>=4.9.4 libresolv
+ # NOT AVAILABLE. Please, use libresolv.
+ 
+-CC=gcc
++#CC=armv6z-mediatek-linux-gnueabi-gcc
++CC=armv6z-mediatek451_001_vfp-linux-gnueabi-gcc
+ # What a pity, all new gccs are buggy and -Werror does not work. Sigh.
+ #CCOPT=-D_GNU_SOURCE -O2 -Wstrict-prototypes -Wall -g -Werror
+-CCOPT=-D_GNU_SOURCE -O2 -Wstrict-prototypes -Wall -g
++#CCOPT=-D_GNU_SOURCE -O2 -Wstrict-prototypes -Wall -g
++CCOPT=-D_GNU_SOURCE -O2 -Wstrict-prototypes -Wall -Wno-strict-aliasing -I../../../library/openssl/openssl-0.9.8r/usr/include/ -g
+ CFLAGS=$(CCOPT) $(GLIBCFIX) $(DEFINES) 
++#LDFLAGS=-isystem/mtkoss/gnuarm/vfp_4.5.1_2.6.27_arm11-rhel4/i686/bin/../sysroot/
+ 
+ IPV4_TARGETS=tracepath ping clockdiff rdisc arping tftpd rarpd
+ IPV6_TARGETS=tracepath6 traceroute6 ping6
+@@ -27,9 +30,9 @@
+ 
+ 
+ tftpd: tftpd.o tftpsubs.o
+-arping: arping.o -lsysfs
++arping: arping.o
+ ping: ping.o ping_common.o
+-ping6: ping6.o ping_common.o -lresolv -lcrypto
++ping6: ping6.o ping_common.o
+ ping.o ping6.o ping_common.o: ping_common.h
+ tftpd.o tftpsubs.o: tftp.h
+ 

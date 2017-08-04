@@ -1,0 +1,9 @@
+tar-1.17
+
+migrantionubi use tar-1.25.tar.bz2 
+
+static config & build way:
+
+armq LDFLAGS=-static ./configure --prefix=/usr --host=armv6z-mediatek-linux-gnueabi
+
+make

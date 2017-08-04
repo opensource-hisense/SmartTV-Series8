@@ -1,0 +1,10 @@
+NAME=util-linux-ng
+VERSION=2.18
+URL=http://userweb.kernel.org/~kzak/util-linux-ng/
+LICENSE=GPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/util-linux-ng
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=util-linux is a ramdom collection of Linux utilities

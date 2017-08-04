@@ -1,0 +1,10 @@
+NAME=iputils
+VERSION=s20101006
+URL=http://www.skbuff.net/iputils/
+LICENSE=GPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/iputils
+MTK_MODIFY=Yes
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=set of small useful utilities for Linux networking

@@ -1,0 +1,39 @@
+export USING_MMU=1
+export USING_UMP=1
+export TARGET_PLATFORM=mt53xx
+export CONFIG=mt53xx
+export BUILD=release
+export KDIR=$(KERNEL_OBJ_ROOT)/$(KERNEL_VER)/$(KERNEL_CONFIG)
+ifeq "$(SUSPEND_TO_DRAM)" "true"
+export USING_MALI_RUN_TIME_PM=1
+export USING_MALI_PMU=1
+endif
+export JOBS ?= 10
+export MALI_VER         ?= mali400-r4p0rel0
+
+CP      ?= cp
+CP_FLAG ?= -a
+
+DEVICE_STRING = device/$(BRAND)/$(ODM)/$(IC_SETTING)
+
+MALI_KO_ROOT = $(LINUX_ROOT)/android/$(ANDROID_VERSION)/$(DEVICE_STRING)/DTV_OUT
+MALI_OBJ_ROOT      = $(OBJ_ROOT)/oss/source/arm_mali_ko/$(MALI_VER)/devicedrv
+PROJECTX_FILE := .config-projectx
+ifndef PROJECTX
+PROJECTX := $(shell if [ -f $(PROJECTX_FILE) ];then cat $(PROJECTX_FILE); else echo "$(LINUX_ROOT)/project_x"; fi)
+endif
+
+all:
+	$(MAKE) -j $(JOBS) -C ump
+	$(MAKE) -j $(JOBS) -C mali UMP_OBJ_ROOT=$(MALI_OBJ_ROOT)/ump/
+	$(CP) $(CP_FLAG) $(MALI_OBJ_ROOT)/ump/ump.ko   $(MALI_KO_ROOT)
+	$(CP) $(CP_FLAG) $(MALI_OBJ_ROOT)/mali/mali.ko $(MALI_KO_ROOT)
+
+clean:
+	$(RM) $(RM_FLAG) -r $(OBJ_ROOT)/oss/source/arm_mali_ko
+	$(RM) $(RM_FLAG) $(MALI_KO_ROOT)/ump.ko
+	$(RM) $(RM_FLAG) $(MALI_KO_ROOT)/mali.ko
+	$(RM) -rf $(LINUX_ROOT)/oss/source/arm_mali_ko/$(MALI_VER)/devicedrv/mali/arch
+	$(RM) -rf $(LINUX_ROOT)/oss/source/arm_mali_ko/$(MALI_VER)/devicedrv/ump/arch
+	
+

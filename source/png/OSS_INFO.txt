@@ -1,0 +1,10 @@
+NAME=libpng 
+VERSION=1.2.43
+URL=http://sourceforge.net/projects/libpng/files/
+LICENSE=BSD
+OWNER=Xiuqin Wang
+SOURCE=oss/source/png
+MTK_MODIFY=
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=libpng -THE reference library for reading, displaying, writing and examining png Image Network Graphics.

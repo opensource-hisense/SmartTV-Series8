@@ -1,0 +1,11 @@
+NAME=ntfs-3g
+VERSION=2010.5.22
+URL=http://sourceforge.net/
+LICENSE=GPLv2
+OWNER=xiaojun.zheng
+SOURCE=oss/source/ntfs-3g
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=c runtime library
+RELEASE_SOURCE=Yes
+INSTALL_PATH=basic

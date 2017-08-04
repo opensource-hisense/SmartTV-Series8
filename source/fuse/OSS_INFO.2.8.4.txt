@@ -1,0 +1,11 @@
+NAME=fuse
+VERSION=2.8.4
+URL=http://sourceforge.net/projects/fuse
+LICENSE=GPLv2
+OWNER=xiaojun.zheng
+SOURCE=oss/source/fuse
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=c runtime library
+RELEASE_SOURCE=Yes
+INSTALL_PATH=basic

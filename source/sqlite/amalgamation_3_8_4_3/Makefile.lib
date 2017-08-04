@@ -1,0 +1,33 @@
+#-----------------------------------------------------------------------------
+# Copyright (c) 2009, MediaTek Inc.
+# All rights reserved.
+#
+# Unauthorized use, practice, perform, copy, distribution, reproduction,
+# or disclosure of this information in whole or in part is prohibited.
+#-----------------------------------------------------------------------------
+# $RCSfile:  $
+# $Revision:
+# $Date:
+# $Author:  $
+# $CCRevision:  $
+# $SWAuthor:  $
+# $MD5HEX:  $
+#
+# Description:
+#        
+#---------------------------------------------------------------------------*/
+
+ifndef MTK_SQLITE_VERSION
+MTK_SQLITE_VERSION := 3.8.4.3
+endif
+
+.PHONY: all clean
+
+all:
+	make -C ./$(MTK_SQLITE_VERSION)/lib $@
+	cp -a ./$(MTK_SQLITE_VERSION)/lib/libsqlite3.so* $(OSS_OUTPUT)/basic/lib
+
+clean:
+	make -C ./$(MTK_SQLITE_VERSION)/lib $@
+	rm -rf $(OSS_OUTPUT)/basic/lib/libsqlite3.so*
+

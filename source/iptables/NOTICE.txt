@@ -1,0 +1,14 @@
+netfilter/iptables is - like all of the Linux Kernel - Free Software (sometimes referred to as Open Source Software), distributed under the terms of the GNU GPLv2 only. 
+Please, note that some source code files might differ, and in that case it is explicitely stated in the header of every file.
+
+The GPL also contains some obligations. If you distribute netfilter/iptables code in binary form, you have to offer the source code, too.
+
+The netfilter/iptables project has made available some more detailed information on this subject:
+
+The remainder of this page as pdf (An Article on the licensing of netfilter/iptables by Harald Welte
+
+An Example disclaimer to be used as an appendix in a product manual.
+
+The TeX source code of those documents can be found via our ViewCVS interface.
+
+Contact the coreteam in case you have any further questions.

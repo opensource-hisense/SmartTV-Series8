@@ -1,0 +1,11 @@
+NAME=xerces-c++
+VERSION=3.1.1
+URL=http://xerces.apache.org/
+LICENSE=Apache License, Version 2.0
+OWNER=jun.zhao
+SOURCE=oss/source/xerces
+MTK_MODIFY=YES
+USAGE=Dynamic Link
+COMMENT=c runtime library
+RELEASE_SOURCE=Yes
+INSTALL_PATH=3rd

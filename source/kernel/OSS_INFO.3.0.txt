@@ -1,0 +1,12 @@
+NAME=linux kernel
+VERSION=3.0
+URL=http://kernel.org
+LICENSE=GPLv2
+OWNER=yj.chiang
+SOURCE=chiling/kernel/linux-3.0
+MTK_MODIFY=Yes
+USAGE=Kernel
+COMMENT=Linux kernel
+RELEASE_SOURCE=Yes
+INSTALL_PATH=basic
+

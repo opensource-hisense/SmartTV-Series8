@@ -1,0 +1,11 @@
+NAME=e2fsprogs
+VERSION=2.12.2
+URL=http://e2fsprogs.sourceforge.net
+LICENSE=GPLV2
+OWNER=xiaojun.zheng
+SOURCE=oss/source/e2fsprogs
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=c runtime library
+RELEASE_SOURCE=Yes
+INSTALL_PATH=basic

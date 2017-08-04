@@ -1,0 +1,10 @@
+NAME=module-init-tools
+VERSION=3.12
+URL=https://modules.wiki.kernel.org/index.php/Main_Page
+LICENSE=GPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/module-init-tools
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=linux userspace module loading utilities

@@ -1,0 +1,12 @@
+NAME=samba
+VERSION=3.0.37
+URL=http://www.samba.org/
+LICENSE=libsamba.txt (GPLv2)
+OWNER=Jian.Dong
+SOURCE=oss/source/samba
+MTK_MODIFY=No
+USAGE=Dynamic Link
+RELEASE_SOURCE=no
+COMMENT=Samba is the standard Windows interoperability suite of programs for Linux and Unix.
+INSTALL_PATH=3rd
+

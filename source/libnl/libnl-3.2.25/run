@@ -1,0 +1,8 @@
+export TOOL_CHAIN_BIN_PATH=/mtkoss/gnuarm/neon_4.8.2_2.6.35_cortex-a9-ubuntu/i686/bin
+export PATH=${PATH}:$(TOOL_CHAIN_BIN_PATH)
+export CROSS_COMPILE=${TOOL_CHAIN_BIN_PATH}/armv7a-mediatek482_001_neon-linux-gnueabi-
+export CC=${CROSS_COMPILE}gcc
+export AR=${CROSS_COMPILE}ar
+export LD=${CROSS_COMPILE}ld
+export STRIP=${CROSS_COMPILE}strip
+CC=${CROSS_COMPILE}gcc ./configure --host=arm-linux-gnueabi --prefix=/proj/mtk01922/aosp/DTV/MP_BR/DTV_X_IDTV1401_002288_8_001/l-pdk/device/mediatek_common/vm_linux/oss/source/libnl/libnl-3.2.25

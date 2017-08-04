@@ -1,0 +1,1 @@
+./wpa_supplicant -Dwext -i p2p0 -C /var/run/wpa_supplicant -d

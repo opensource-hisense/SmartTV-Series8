@@ -1,0 +1,10 @@
+NAME=udhcpc
+VERSION=0.9.8cvs20050303-3
+URL=http://udhcp.sourcearchive.com/downloads/0.9.8cvs20050303-3/
+LICENSE=GPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/udhcp
+MTK_MODIFY=Yes
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=Terminal device as a DHCP client

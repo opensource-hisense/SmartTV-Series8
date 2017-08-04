@@ -1,0 +1,10 @@
+NAME=Busybox
+VERSION=1.15.3
+URL=http://www.busybox.net/
+LICENSE=GPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/busybox
+MTK_MODIFY=Yes
+USAGE=Program
+INSTALL_PATH=bin
+COMMENT=BusyBox combines tiny versions of many common UNIX utilities into a single small executable.

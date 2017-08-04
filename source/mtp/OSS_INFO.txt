@@ -1,0 +1,11 @@
+NAME=libmtp
+VERSION=0.3.6
+URL=http://libmtp.sourceforge.net/
+LICENSE=LGPLv2.1
+OWNER=xiaojun.zheng
+SOURCE=oss/source/mtp
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=c runtime library
+RELEASE_SOURCE=Yes
+INSTALL_PATH=basic

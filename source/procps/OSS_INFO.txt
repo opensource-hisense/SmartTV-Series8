@@ -1,0 +1,10 @@
+NAME=procps (ps, top)
+VERSION=3.2.8
+URL=http://procps.sourceforge.net/index.html
+LICENSE=LGPLv2
+OWNER=ryanhh.lee
+SOURCE=oss/source/procps
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=command for watch system process

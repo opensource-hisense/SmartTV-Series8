@@ -1,0 +1,10 @@
+NAME=libwebp
+VERSION=0.2.1
+URL=http://code.google.com/p/webp/
+LICENSE=COPING
+OWNER=Jiyang Zou
+SOURCE=oss/source/webp
+MTK_MODIFY=
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=libwebp: a library for brower, that can improve the performance of downloaing image

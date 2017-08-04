@@ -1,0 +1,11 @@
+NAME=sqlite3
+VERSION=2.12.2
+URL=http://www.sqlite.org/
+LICENSE=LGPLv2.1
+OWNER=alice.chen
+SOURCE=oss/source/sqlite3
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=Implements a self-contained, serverless, zero-configuration, transactional SQL database engine 
+RELEASE_SOURCE=Yes
+INSTALL_PATH=3rd

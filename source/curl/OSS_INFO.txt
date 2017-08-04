@@ -1,0 +1,10 @@
+NAME=libcurl
+VERSION=7.30.0
+URL=http://curl.haxx.se/
+LICENSE=MIT
+OWNER=Jason Wang
+SOURCE=oss/source/libcurl
+MTK_MODIFY=
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=library help to implement http client 

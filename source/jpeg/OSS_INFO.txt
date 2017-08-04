@@ -1,0 +1,10 @@
+NAME=zlib
+VERSION=6b
+URL=http://www.ijg.org/
+LICENSE=libjpeg.txt
+OWNER=jiangtao.xu
+SOURCE=oss/source/jpeg
+MTK_MODIFY=No
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=The 'libjpeg' library used for jpeg image decode.
