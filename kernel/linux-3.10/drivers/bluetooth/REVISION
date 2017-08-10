@@ -1,0 +1,155 @@
+
+2.0.0 (20140228) : 
+	First revision of this revision history.
+
+2.0.1 (20140303) : 
+	Print log for version number.
+	
+2.0.2 (20140311) : 
+	Update FW version to P46.
+
+2.0.3 (20140407) :
+	Update FW version to P47.
+	Add ROM patch checking mechanism.
+
+2.0.4 (20140520) : 
+    Set low power mode.
+
+2.0.5 (20140529) : 
+    Add new define value : BT_REDUCE_EP2_POLLING_INTERVAL_BY_INTR
+
+2.0.6 (20140531) : 
+	Add new feature : read driver version from ioctl.
+2.0.7 (20140610) : 
+	Update ROM patch  version to P53
+
+2.0.8 (20140712) : 
+    Update ROM patch version to P54
+    Add new feature : read driver probe counter
+
+2.0.9 (20140818) : 
+    Send HCI command before suspend.
+    Reduce ROM patch file loading time.
+
+2.0.10 (20140904) : 
+    Bug fix for MT7632
+
+2.0.11 (20140929) : 
+    Send HCI_RESET when no need to load rom patch.
+
+2.0.12 (20141001) : 
+	Add FW assert log dump mechanism.
+	
+2.0.13 (20141016) : 
+    Improve FW assert log dump mechanism to support large file size.
+    
+2.0.14 (20141017) : 
+    To support Linux kernel 3.13.
+    Finetune FW dump log & file name.
+
+2.0.15 (20141027) : 
+    To support dongle reset when intialization failed.
+    To support FW assert UI.
+
+2.0.16 (20141117) : 
+    Finetune HW rst pin toggle mechanism.
+    Sync BT driver for SCO.
+
+2.0.17 (20141121) :
+    Support HCI CMD filter for unpredicted command.
+
+2.0.18 (20141126) :
+    Support send dummy bulk out packet after resume.
+
+2.0.19 (20141203) : 
+    Add mechanism : force kernek panic when FW assert.
+    Add mechanism : new ioctl to get dongle reset status.
+    Add mechanism : new ioctl to force dongle reset.
+
+2.0.20 (20141216) : 
+	Add debug log.
+	Add HCI dump mechanism.
+	Set control trnafer timeout value to 100ms.
+
+2.0.21 (20141223) : 
+	Finetune error handling for btmtk_usb_close.
+
+2.0.22 (20141224) : 
+    Fine-tune log.    
+    Enable BT low power mode.
+
+2.0.23 (20141226) : 
+    Add FW log mechanism.
+
+2.0.24 (20141229) : 
+    Add new API for wifi driver to trigger FW assert core dump.
+
+2.0.25 (20150108) : 
+    Add new mechanism : keep hci dev instance.
+
+2.0.26 (20150109) : 
+    Add new mechanism : send dummy error hci event after resume.
+
+2.0.27 (20150113) : 
+    Debugging for the new mechanisms.
+
+2.0.28 (20150114) : 
+    Add ioctl to qurery suspend/resume status.
+
+2.0.29 (20150114) : 
+    Improve error handling.
+
+2.0.30 (20150121) : 
+    Add error handling for HCI_RESET command failed.
+
+2.0.31 (20150127) : 
+	Add new API to set rom patch version string.
+
+2.0.32 (20150129) : 
+    Increase probe counter in suspend function instead of probe function.
+
+2.0.33 (20150205) :
+    Update probe_counter behavior.
+
+2.0.34 (20150206) : 
+    Update wake up reason checking.
+
+2.0.35 (20150212) :
+    Support reduce EP2 BULK_IN polling by INTERRUPT_IN.
+
+2.0.36 (20150216) :
+    Fix suspend/resume timing issue.
+
+2.0.36 (20150225) :
+    If rom patch loaded by other modeuld, BT driver still try to get ROM Patch Version string.
+
+2.0.38 (20150302) : 
+    Send HCI_RESET when wake up reason is 32.
+
+2.0.39 (20150303) : 
+    Handle reject_all_cmd state correctly.
+
+2.0.40 (20150304) : 
+    Support new FW feature of BULK to INTR.
+
+2.0.41 (20150305) : 
+    Exit reject_all_cmd state when BT ON.
+2.0.42 (20150408) : 
+    Enable low power mode when no need to load rom patch.
+    Add debug log.
+
+2.0.42.1 (20150504) : 
+    Disable SUPPORT_PRINT_FW_LOG.
+
+2.0.43 (20150515)
+    Add support mt7662t chip.
+
+2.0.43.1 (20150519)
+    Disable SUPPORT_FW_DUMP_UI & SUPPORT_CHECK_WAKE_UP_REASON_DECIDE_SEND_HCI_RESET.
+
+2.0.43.2 (20150604)
+    change BT RC wake up pattern.
+
+2.0.43.3 (20150624)
+    add dynamic configuration for different BT RC wake up patterns.
+

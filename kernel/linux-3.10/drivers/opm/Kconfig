@@ -1,0 +1,17 @@
+menu "OPM Support"
+
+config OPM
+	bool "ordered power management support"
+	default n if ARCH_MT5391
+	default n if ARCH_MT5363
+	default n if ARCH_MT5365
+	default n if ARCH_MT5395
+	default n if ARCH_MT5396
+	default n if MACH_MT5880
+	help
+	  support device power management's suspend and resume operation 
+	  to be called according to specified order, not depends on device's 
+	  registeration sequence.
+	  
+endmenu
+

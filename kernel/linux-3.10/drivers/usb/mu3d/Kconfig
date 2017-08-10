@@ -1,0 +1,32 @@
+config USB_MU3D
+	depends on USB
+	select USB_GADGET_DUALSPEED
+#	select USB_GADGET_SUPERSPEED	
+	select MUSB_PIO_ONLY
+	tristate "MU3D (MTK USB3.0 Device) Controller"
+	default n
+
+	
+config USB_MU3D_DRV
+	depends on USB
+	select USB_GADGET_DUALSPEED
+	select MUSB_PIO_ONLY
+	tristate "MU3D Driver"
+	default n
+
+config USB_MU3D_UDC
+	depends on USB
+	tristate "MU3D udc Driver"
+	default n
+
+config USB_MU3D_TEST_DRV
+	depends on USB_MU3D
+	tristate "MU3D Test Driver"
+	default n
+
+
+config USB_MU3D_O0
+	depends on USB_MU3D
+	tristate "Apply -O0 compile flag"
+	default n
+

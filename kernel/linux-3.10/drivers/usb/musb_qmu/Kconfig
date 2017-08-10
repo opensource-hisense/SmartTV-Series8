@@ -1,0 +1,35 @@
+config USB_MTK_MUSB
+	depends on (USB || USB_GADGET)
+	tristate 'MTK MUSB support'
+	default m
+	help
+	 Enable MTK MUSB support
+
+config USB_MTK_MUSB_HOST
+	depends on USB_MTK_MUSB
+	select USB_MUSB_HDRC_HCD
+	tristate 'MTK MUSB host mode'
+	help
+	 Enable MTK MUSB host mode 
+	 
+config USB_MTK_MUSB_PERIPHERAL
+	depends on USB_MTK_MUSB
+	select USB_GADGET_MUSB_HDRC
+	bool 'MTK MUSB peripheral mode'
+	help
+	 Enable MTK MUSB peripheral mode 
+
+config USB_MTK_MUSB_DMA
+	depends on USB_MTK_MUSB
+	select USB_MUSB_INVENTRA_DMA
+	tristate 'MTK MUSB DMA support'
+	default n
+	help
+	 Enable MTK MUSB peripheral mode 
+
+config USB_MTK_MUSB_QMU
+	depends on USB_MTK_MUSB
+	tristate 'MTK MUSB QMU support'
+	help
+	 Enable MTK MUSB QMU support 	 
+

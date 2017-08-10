@@ -1,0 +1,19 @@
+/*
+ * Device Tree for the Mediatek MT53xx platform
+ */
+
+/dts-v1/;
+
+/ {
+	model = "Mediatek DTV MT53xx";
+	compatible = "Mediatek,MT53xx";
+
+	memory {
+		device_type = "memory";
+		reg = <0 0x10000000>;
+	};
+
+	chosen {
+		bootargs = "root=/dev/mmcblk0p7 rootwait rootfstype=squashfs ro console=ttyMT1,115200n1 vmalloc=700mb debug mtdparts=mt53xx-emmc:2M(uboot),2M(uboot_env),256k(part_02),256k(part_03),4M(kernelA),4M(kernelB),75M(rootfsA),75M(rootfsB),256k(basic),16M(rw_area),256k(perm),192M(reserved),256k(reserved),256k(channelA),256k(channelB),256k(pq),256k(aq),256k(logo),256k(part_18),3M(adsp) usbportusing=1,1,0,1 usbpwrgpio=66:1,43:1,44:1,210:1 usbocgpio=404:0,404:0,405:0,405:0 msdcgpio=-1,-1,-1,-1,-1,-1 no_console_suspend";
+	};
+};

@@ -1,0 +1,100 @@
+#
+# (C) Copyright 2002-2006
+# Wolfgang Denk, DENX Software Engineering, wd@denx.de.
+#
+# See file CREDITS for list of people who contributed to this
+# project.
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+# MA 02111-1307 USA
+#
+
+include $(TOPDIR)/config.mk
+
+CFLAGS += -I$(COMMON_INC) -I$(OSAI_INC)
+
+LIB	= $(obj)lib$(ARCH).o
+LIBGCC	= $(obj)libgcc.o
+
+ifndef CONFIG_SPL_BUILD
+GLSOBJS	+= _ashldi3.o
+GLSOBJS	+= _ashrdi3.o
+GLSOBJS	+= _divsi3.o
+GLSOBJS	+= _lshrdi3.o
+GLSOBJS	+= _modsi3.o
+GLSOBJS	+= _udivsi3.o
+GLSOBJS	+= _umodsi3.o
+
+GLCOBJS	+= div0.o
+
+COBJS-y	+= board.o
+COBJS-y	+= bootm.o
+COBJS-y	+= cache.o
+COBJS-y	+= cache-cp15.o
+COBJS-$(CONFIG_SYS_L2_PL310) += cache-pl310.o
+#COBJS-y	+= interrupts.o
+COBJS-y	+= reset.o
+SOBJS-$(CONFIG_USE_ARCH_MEMSET) += memset.o
+SOBJS-$(CONFIG_USE_ARCH_MEMCPY) += memcpy.o
+endif
+
+SRCS	:= $(GLSOBJS:.o=.S) $(GLCOBJS:.o=.c) \
+	   $(SOBJS-y:.o=.S) $(COBJS-y:.o=.c)
+LGOBJS	:= $(addprefix $(obj),$(GLSOBJS)) \
+	   $(addprefix $(obj),$(GLCOBJS))
+
+# Always build libarm.o
+TARGETS	:= $(LIB)
+
+ifeq ($(TARGET_IC), $(filter $(TARGET_IC), mt5396 mt5368 mt5398 mt5880 mt5399))
+OBJS    += mmu_ca9.o
+OBJS    += hal_ca9.o
+else ifeq ($(TARGET_IC), $(filter $(TARGET_IC), mt5890 mt5882 mt5883 mt5891))
+OBJS    += mmu_ca12.o
+OBJS    += hal_ca12.o
+else
+OBJS    += mmu.o
+OBJS    += hal.o
+endif
+
+OBJS	:= $(addprefix $(obj),$(SOBJS-y) $(COBJS-y) $(OBJS))
+
+
+# Build private libgcc only when asked for
+ifdef USE_PRIVATE_LIBGCC
+TARGETS	+= $(LIBGCC)
+endif
+
+# For EABI conformant tool chains, provide eabi_compat()
+ifneq (,$(findstring -mabi=aapcs-linux,$(PLATFORM_CPPFLAGS)))
+TARGETS	+= $(obj)eabi_compat.o
+endif
+
+all:	$(TARGETS)
+
+$(LIB):	$(obj).depend $(OBJS)
+	$(call cmd_link_o_target, $(OBJS))
+
+$(LIBGCC): $(obj).depend $(LGOBJS)
+	$(call cmd_link_o_target, $(LGOBJS))
+
+#########################################################################
+
+# defines $(obj).depend target
+include $(SRCTREE)/rules.mk
+
+sinclude $(obj).depend
+
+#########################################################################

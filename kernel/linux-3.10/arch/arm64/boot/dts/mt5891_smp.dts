@@ -1,0 +1,217 @@
+/*
+ * ARM Ltd.
+ *
+ * ARMv8 Foundation model DTS
+ */
+
+/dts-v1/;
+
+/memreserve/ 0x00000000 0x00010000;
+
+/ {
+	model = "MT5891";
+	compatible = "arm,foundation-aarch64", "arm,vexpress";
+	interrupt-parent = <&gic>;
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	chosen {
+		bootargs = "root=/dev/mmcblk0p8 rootwait rootfstype=squashfs rw console=ttyMT0,115200n1 debug mtdparts=mt53xx-emmc:2M(uboot),2M(uboot_env),256k(part_02),256k(part_03),6M(kernelA),6M(kernelB),75M(rootfsA),75M(rootfsB),256k(basic),16M(perm),256k(3rd_ro),192M(rw_area),256k(reserved),256k(channelA),256k(channelB),256k(pq),256k(aq),256k(logo),256k(acfg_descr),3M(adsp),256k(adsp),256k(part_21) usbportusing=1,1,0,1 usbpwrgpio=42:1,43:1,48:1,210:1 usbocgpio=404:0,404:0,405:0,405:0 usbhubrstgpio=-1:-1 msdcgpio=76,-1,-1,176,-1,-1";
+		linux,initrd-start = <0x2000000>;
+		linux,initrd-end = <0x2800000>;
+	};
+
+	/* Do not put any bus before mtk-msdc, because it should be mtk-msdc.0 for partition device node usage */
+	mtk-msdc {
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		/* eMMC */
+		MSDC0@0xF006D000 {
+			compatible = "Mediatek,MSDC0";
+			reg = <0xF006D000 0x1000>;	/* MSDC0_BASE */
+			interrupts = <0 140 4>;
+			id = <0>;
+			sclk-reg = <0xF000D380>;
+			hclk-reg = <0xF000D384>;
+			status = "okay";
+		};
+
+		/* SDMMC */
+		MSDC1@0xF0012000 {
+			compatible = "Mediatek,MSDC1";
+			reg = <0xF0012000 0x1000>;	/* MSDC1_BASE */
+			interrupts = <0 100 4>;
+			id = <1>;
+			sclk-reg = <0xF000D32C>;
+			hclk-reg = <0xF000D3A0>;
+			status = "disabled";
+		};
+	};
+
+	soc {
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		bim@f0000000 {
+			compatible = "Mediatek, TVBIM";
+			reg = <0xf0000000 0x300000>;
+		};
+		pdwnc@f0028000 {
+			compatible = "Mediatek, PDWNC";
+			reg = <0xf0028000 0x1000>;
+		};
+		ckgen@f000d000 {
+			compatible = "Mediatek, CKGEN";
+			reg = <0xf000d000 0x1000>;
+		};
+		rs232@f000c000 {
+		compatible = "Mediatek, RS232";
+		reg = <0xf000c000 0x1000>,
+			  <0xf0028000 0x1000>,
+			  <0xf000d000 0x1000>,
+			  <0xf0008000 0x1000>;
+		};
+		starmac@f000d000 {
+		compatible = "Mediatek, MAC";
+		reg = <0xf0032000 0x140>,
+			  <0xf000d400 0x140>,
+			  <0xf000d000 0x140>,
+			  <0xf0028000 0x140>;
+		};
+		usb20@f0059800 {
+		compatible = "Mediatek, TVUSB20";
+		reg = <0xf0059800 0x400>,
+			 <0xf0050000 0x4000>,
+		  	 <0xf0061A00 0x10>,
+			 <0xf0028000 0x100>,
+			 <0xf0059f00 0x20>,
+			 <0xf0053f00 0x20>;
+		};
+		ssusb@f0070000 {
+		compatible = "Mediatek, TVSSUSB";
+		reg = <0xf000D5AC 0x10>,
+			 <0xf0070000 0x100>,
+			 <0xf0070100 0x100>,
+			 <0xf0070700 0xCC>,
+		  	 <0xf0070800 0xFC>,
+		  	 <0xf0070900 0x100>,
+		  	 <0xf0070A00 0x100>,
+		  	 <0xf0070B00 0x100>,
+		  	 <0xf0070C00 0x100>,
+		  	 <0xf0074000 0x9F4>,
+		  	 <0xf0076400 0x148>,
+		  	 <0xf0076600 0xDC>,
+		  	 <0xf0077400 0x60>,
+		  	 <0xf0074000 0x10000>;
+		};
+		nandreg1@f0029000 {
+			compatible = "Mediatek, NAND";
+			reg = <0xf0029000 0x1000>,
+				  <0xf000d000 0x1000>,
+				  <0xf0008600 0xA00>;
+		};
+		gcpu@f0016000 {
+			compatible = "Mediatek, GCPU";
+			reg = <0xf0016000 0x1000>;
+		};
+		iommu@f0068000 {
+			compatible = "Mediatek, IOMMU";
+			reg = <0xf0068000 0x1000>;
+		};
+	};
+
+	cpus {
+		#address-cells = <2>;
+		#size-cells = <0>;
+
+		cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x0>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x0000fff8>;
+		};
+        cpu@1 {
+            device_type = "cpu";
+            compatible = "arm,armv8";
+            reg = <0x0 0x1>;
+            enable-method = "spin-table";
+            cpu-release-addr = <0x0 0xf0008068>;
+        };
+        cpu@2 {
+            device_type = "cpu";
+            compatible = "arm,armv8";
+            reg = <0x0 0x2>;
+            enable-method = "spin-table";
+            cpu-release-addr = <0x0 0xf0008188>;
+        };
+        cpu@3 {
+            device_type = "cpu";
+            compatible = "arm,armv8";
+            reg = <0x0 0x3>;
+            enable-method = "spin-table";
+            cpu-release-addr = <0x0 0xf0008178>;
+        };
+	};
+
+	memory@0 {
+		device_type = "memory";
+		reg = <0 0x0 0 0x10000000>;
+	};
+
+        /*
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		reserve-memory-ccci_md1 {
+			compatible = "reserve-memory-ccci_md1";
+			no-map;
+			size = <0 0x1000>;
+			alignment = <0 0x1000>;
+			alloc-ranges = <0 0x00000000 0 0x01000000>;
+		};
+	};
+        */
+
+    gic: interrupt-controller@f2011000 {
+        compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
+        #interrupt-cells = <3>;
+        #address-cells = <0>;
+        interrupt-controller;
+        reg = <0x0 0xf2011000 0 0x1000>,
+              <0x0 0xf2012000 0 0x1000>,
+              <0x0 0xf2014000 0 0x2000>,
+              <0x0 0xf2016000 0 0x2000>;
+        interrupts = <1 9 0xf04>;
+    };
+
+	system_timer {
+		compatible = "mediatek,mt53xx-system-timer";
+		reg = <0 0xf0008000 0 0x1000>;
+		interrupt-parent = <&gic>;
+		interrupts = <0 75 0x8>; /* 75 + 32 = 107, 107 - 104 = 3 */
+		clock-frequency = <24000000>;
+	};
+
+	timer {
+		compatible = "arm,armv8-timer";
+		interrupts = <1 13 0xff01>,
+			     <1 14 0xff01>;
+		clock-frequency = <24000000>;
+	};
+
+	pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <0 60 4>,
+			     <0 61 4>,
+			     <0 62 4>,
+			     <0 63 4>;
+	};
+};

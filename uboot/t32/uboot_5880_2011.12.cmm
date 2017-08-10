@@ -1,0 +1,42 @@
+store "breakpts.cmm" Break
+; store "windowps.cmm" Win
+
+res
+;====select configuration according to your enviroment====
+;=========================================================
+; CVD, dual core
+SYS.CPU CortexA9MPCoreSMP2
+;SYS.JC rtck
+;=========================================================
+SYS.JC 5.0MHz
+SYS.M UP
+wait 10.ms
+
+; This is the program name that you want to load
+D.S C15:0x1 %LONG 0
+D.S SD:0xf0005080 %LE %LONG 0
+
+d.load.elf ../../../output/mtk_android/mt5860_cn_android_512/debug/obj/uboot/chiling/uboot/u-boot-2011.12/u-boot
+
+do "breakpts.cmm"
+; do "windowps.cmm"
+
+setup.imaskhll on
+setup.imaskasm on
+; You need to set the path of source code, otherwise you could not
+; see the source when debugging.
+;y.spath ../u-boot-2011.12
+y.spath.srd ../u-boot-2011.12/common
+y.spath.srd ../u-boot-2011.12/board/mt5398
+y.spath.srd ../u-boot-2011.12/include
+y.spath.srd ../u-boot-2011.12/arch/arm/lib
+y.spath.srd ../u-boot-2011.12/lib
+y.spath.srd ../u-boot-2011.12/drivers
+
+data.list
+m
+V %HEX
+; go
+
+
+

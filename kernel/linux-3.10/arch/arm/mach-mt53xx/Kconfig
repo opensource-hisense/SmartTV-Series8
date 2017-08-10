@@ -1,0 +1,337 @@
+# arch/arm/plat-mt53xx/Kconfig
+#
+# by lh.hsiao
+#
+# Licensed under GPLv2
+
+
+if PLAT_MT53XX
+# boot configurations
+choice
+	prompt "ARCH/MACH select"
+default MACH_MT5398
+
+config MACH_MT5368
+	bool "MediaTek MT5368(Cortex-A9 single-core)"
+	select CPU_V7
+	select ARM_GIC
+        select MIGHT_HAVE_CACHE_L2X0
+	select ARCH_MT5368
+	select CACHE_L2X0
+	select CACHE_PL310
+	help
+	  This enables support for MediaTek MT5368.
+
+config MACH_MT5396
+	bool "MediaTek MT5396(Cortex-A9 dual-core)"
+	select CPU_V7
+	select ARM_GIC
+	select HAVE_SMP
+        select MIGHT_HAVE_CACHE_L2X0
+	select ARCH_MT5396
+	select NEED_PREPARE_CPUS_FOR_ONE
+	select CACHE_L2X0
+	select CACHE_PL310
+	help
+	  This enables support for MediaTek MT5396.
+
+config MACH_MT5369
+	bool "MediaTek MT5369(Cortex-A9 single-core)"
+	select CPU_V7
+	select ARM_GIC
+        select MIGHT_HAVE_CACHE_L2X0
+	select ARCH_MT5396	       	# Share code with MT5396
+	select MT53XX_UP_CHECK
+	select CACHE_L2X0
+	select CACHE_PL310
+	help
+	  This enables support for MediaTek MT5369.
+
+config MACH_MT5389
+	bool "MediaTek MT5389(Arm11)"
+	select CPU_V6
+	select CPU_32v6K
+        select MIGHT_HAVE_CACHE_L2X0
+	select ARCH_MT5389
+	select CACHE_L2X0
+	select CACHE_PL310
+	help
+	  This enables support for MediaTek MT5389.
+
+config MACH_MT5398
+	bool "MediaTek MT5398(Cobra Cortex-A9 dual-core)"
+	select CPU_V7
+	select ARM_GIC
+	select HAVE_SMP
+        select MIGHT_HAVE_CACHE_L2X0
+	select ARCH_MT5398
+	select NEED_PREPARE_CPUS_FOR_ONE if SMP
+	select MT53XX_UP_CHECK if !SMP
+	help
+	  This enables support for MediaTek MT5398.
+
+config MACH_MT5399
+	bool "MediaTek MT5399(Cobra Cortex-A9 dual-core)"
+	select CPU_V7
+	select ARM_GIC
+	select HAVE_SMP
+        select MIGHT_HAVE_CACHE_L2X0
+	select ARCH_MT5399
+	select NEED_PREPARE_CPUS_FOR_ONE if SMP
+	select MT53XX_UP_CHECK if !SMP
+	help
+	  This enables support for MediaTek MT5399.
+
+config MACH_MT5890
+	bool "MediaTek MT5890(Oryx Cortex-A12 quad-core)"
+	select CPU_V7
+	select ARM_GIC
+	select HAVE_SMP
+	select ARCH_MT5890
+	select NEED_PREPARE_CPUS_FOR_ONE if SMP
+	select MT53XX_UP_CHECK if !SMP
+	select ARM_HAS_SG_CHAIN
+	help
+	  This enables support for MediaTek MT5890.
+
+config MACH_MT5891
+	bool "MediaTek MT5891(Oryx Cortex-A53 quad-core)"
+	select CPU_V7
+	select ARM_GIC
+	select HAVE_SMP
+	select ARCH_MT5891
+	select NEED_PREPARE_CPUS_FOR_ONE if SMP
+	select MT53XX_UP_CHECK if !SMP
+	select ARM_HAS_SG_CHAIN
+	select ARM_ERRATA_824069
+	help
+	  This enables support for MediaTek MT5891.
+
+config MACH_MT5861
+	bool "MediaTek MT5861(Gazelle Cortex-A12 quad-core)"
+	select CPU_V7
+	select ARM_GIC
+	select HAVE_SMP
+        select MIGHT_HAVE_CACHE_L2X0
+	select ARCH_MT5861
+	select NEED_PREPARE_CPUS_FOR_ONE if SMP
+	select MT53XX_UP_CHECK if !SMP
+	select ARM_HAS_SG_CHAIN
+	help
+	  This enables support for MediaTek MT5861.
+
+config MACH_MT5880
+	bool "MediaTek MT5880(Viper Cortex-A9)"
+	select CPU_V7
+	select ARM_GIC
+	select HAVE_SMP
+        select MIGHT_HAVE_CACHE_L2X0
+	select ARCH_MT5880
+	select NEED_PREPARE_CPUS_FOR_ONE if SMP
+	select MT53XX_UP_CHECK if !SMP
+	help
+	  This enables support for MediaTek MT5398.
+
+config MACH_MT5881
+	bool "MediaTek MT5881(Arm11)"
+	select CPU_V6
+	select CPU_32v6K
+	select ARCH_MT5881
+	help
+	  This enables support for MediaTek MT5881.
+
+config MACH_MT5882
+	bool "MediaTek MT5882(Capri Cortex-A7 quad-core)"
+	select CPU_V7
+	select ARM_GIC
+	select HAVE_SMP
+	select ARCH_MT5882
+	select NEED_PREPARE_CPUS_FOR_ONE if SMP
+	select MT53XX_UP_CHECK if !SMP
+	select ARM_HAS_SG_CHAIN
+	help
+	  This enables support for MediaTek MT5882.
+
+config MACH_MT5883
+	bool "MediaTek MT5883(Lemur Cortex-A7 dual-core)"
+	select CPU_V7
+	select ARM_GIC
+	select HAVE_SMP
+	select ARCH_MT5883
+	select NEED_PREPARE_CPUS_FOR_ONE if SMP
+	select MT53XX_UP_CHECK if !SMP
+	help
+	  This enables support for MediaTek MT5883.
+
+config MACH_MT5368_FPGA
+	bool "MediaTek MT5368_FPGA(ARM11)"
+	select CPU_V6
+	select ARCH_MT5368
+	select MT53_FPGA
+	help
+	  This enables support for MediaTek MT5368.
+
+config MACH_MT5396_FPGA
+	bool "MediaTek MT5396_FPGA(ARM11)"
+	select CPU_V7
+	select ARCH_MT5396
+	select MT53_FPGA
+	help
+	  This enables support for MediaTek MT5396.
+endchoice
+
+config ARCH_MT5368
+	bool "MediaTek MT5368" if MACH_MT5368 || MACH_MT5368_FPGA
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+	help
+	  This enables support for MediaTek MT5368.
+
+config ARCH_MT5396
+	bool "MediaTek MT5396" if MACH_MT5396 || MACH_MT5396_FPGA
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+	#select ARCH_USES_GETTIMEOFFSET
+	help
+	  This enables support for MediaTek MT5396.
+
+config ARCH_MT5389
+	bool "MediaTek MT5389" if MACH_MT5389
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+	help
+	  This enables support for MediaTek MT5389.
+
+config ARCH_MT5398
+	bool "MediaTek MT5398" if MACH_MT5398
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+	select MT53XX_NATIVE_GPIO
+	help
+	  This enables support for MediaTek MT5398.
+
+config ARCH_MT5399
+	bool "MediaTek MT5399" if MACH_MT5399
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+	select HAVE_ARM_SCU if SMP
+	select HAVE_ARM_TWD if LOCAL_TIMERS
+	select MT53XX_NATIVE_GPIO
+	help
+	  This enables support for MediaTek MT5399.
+
+config ARCH_MT5890
+	bool "MediaTek MT5890" if MACH_MT5890
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+	select HAVE_ARM_ARCH_TIMER if LOCAL_TIMERS
+	select MT53XX_NATIVE_GPIO
+	select ARCH_HAS_CPUFREQ
+	select ARM_HAS_SG_CHAIN
+	select CLKSRC_MT53XX_TIMER if OF
+	help
+	  This enables support for MediaTek MT5890.
+
+config ARCH_MT5891
+	bool "MediaTek MT5891" if MACH_MT5891
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+	select HAVE_ARM_ARCH_TIMER if LOCAL_TIMERS
+	select MT53XX_NATIVE_GPIO
+	select ARCH_HAS_CPUFREQ
+	help
+	  This enables support for MediaTek MT5891.
+
+config ARCH_MT5861
+	bool "MediaTek MT5861" if MACH_MT5861
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+	select MT53XX_NATIVE_GPIO
+	help
+	  This enables support for MediaTek MT5861.
+
+config ARCH_MT5880
+	bool "MediaTek MT5880" if MACH_MT5880
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+	select MT53XX_NATIVE_GPIO
+	help
+	  This enables support for MediaTek MT5880.
+config ARCH_MT5881
+	bool "MediaTek MT5880" if MACH_MT5881
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+	help
+	  This enables support for MediaTek MT5881.
+
+config ARCH_MT5882
+	bool "MediaTek MT5882" if MACH_MT5882
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+	select HAVE_ARM_ARCH_TIMER if LOCAL_TIMERS
+	select MT53XX_NATIVE_GPIO
+	help
+	  This enables support for MediaTek MT5882.
+
+config ARCH_MT5883
+	bool "MediaTek MT5883" if MACH_MT5883
+	default n
+	select GENERIC_TIME
+	select GENERIC_CLOCKEVENTS
+	select HAVE_ARM_ARCH_TIMER if LOCAL_TIMERS
+	select MT53XX_NATIVE_GPIO
+	help
+	  This enables support for MediaTek MT5883.
+
+config MT53_FPGA
+	bool "FPGA environment"
+	default n
+
+config MT53XX_UP_CHECK
+	bool
+	default n
+
+config MT53XX_NATIVE_GPIO
+	bool
+	default n
+
+config MT53XX_USE_CHANNELB_DRAM
+	bool "Map channel B DRAM as Linux kernel memory"
+	depends on ARCH_MT5396 || ARCH_MT5398 || ARCH_MT5880 || ARCH_MT5399 || ARCH_MT5890 || ARCH_MT5891
+	default n
+	select HIGHMEM
+	select ZONE_DMA
+	help
+	  Map unused channel B DRAM for Linux kernel usage.
+
+config ENABLE_EXCLUSIVE_CACHE
+	bool "Enable L1&L2 exclusive cache support"
+	depends on CPU_V7 && CACHE_L2X0
+	default n if ARCH_MT5396
+	help
+	  This feature is only supported on CA9 with PL310
+
+endif
+config TV_DRV_VFY
+	bool "tv drv vfy"
+
+config NATIVE_CB2
+	bool "callback mechanism in native"
+
+config KMSG_DUMP_EMMC
+	bool "support kmsg_dump to eMMC partition"
+
+config MTK_LCA_RAM_OPTIMIZE
+	bool "zram enhancement from LCA"
+

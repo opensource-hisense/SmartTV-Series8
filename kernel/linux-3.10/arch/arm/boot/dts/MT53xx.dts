@@ -1,0 +1,75 @@
+/*
+ * Device Tree for the Mediatek MT53xx platform
+ */
+
+/dts-v1/;
+
+/ {
+	model = "Mediatek DTV MT53xx";
+	compatible = "Mediatek,MT53xx";
+
+	memory {
+		device_type = "memory";
+		reg = <0 0x10000000>;
+	};
+
+	chosen {
+		bootargs ="";
+	};
+
+	cpus {
+		cpu0: cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a12";
+			reg = <0x0>;
+			clock-frequency = <1000000000>;
+		};
+
+		cpu1: cpu@1 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a12";
+			reg = <0x1>;
+			clock-frequency = <1000000000>;
+		};
+	};
+
+	gic: interrupt-controller@f2011000 {
+		compatible = "arm,cortex-a15-gic";
+		#interrupt-cells = <3>;
+		#address-cells = <0>;
+		interrupt-controller;
+		reg = <0xf2011000 0x1000>,
+			<0xf2012000 0x1000>;
+
+		gic-cpuif@0 {
+			compatible = "arm,gic-cpuif";
+			cpuif-id = <0>;
+			cpu = <&cpu0>;
+		};
+		gic-cpuif@2 {
+			compatible = "arm,gic-cpuif";
+			cpuif-id = <2>;
+			cpu = <&cpu1>;
+		};
+	};
+
+	timer {
+		compatible = "arm,armv7-timer";
+		interrupt-parent = <&gic>;
+		/* PPI secure/nonsecure IRQ, active low level-sensitive */
+		interrupts = <1 13 0xf08>,
+			     <1 14 0xf08>,
+			     <1 11 0xf08>,
+			     <1 10 0xf08>;
+		clock-frequency = <24000000>;
+	};
+
+  MALI@0xf0040000 {
+     compatible = "arm,malit624", "arm,malit62x", "arm,malit6xx", "arm,mali-midgard";
+     reg = <0xf0040000 0x4000>;
+     interrupts = <0 85 0x8>, <0 86 0x8>, <0 87 0x8>;
+     interrupt_name = "JOB", "MMU", "GPU";
+     clock-frequency = <480000000>;
+    };
+
+};
